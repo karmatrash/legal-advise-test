@@ -30,3 +30,9 @@ $advise-list-theme: mat-light-theme($advise-list-primary, $advise-list-accent, $
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

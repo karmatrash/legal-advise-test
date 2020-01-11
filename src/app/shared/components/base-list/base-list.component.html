@@ -1,6 +1,19 @@
-<div class="base-list">
-  <app-base-list-item
-    *ngFor="let item of data"
-    [value]="item"
-  ></app-base-list-item>
+<div class="base-list-wrapper">
+  <div class="spinner-wrapper" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!--  filters-->
+  <!--  pagination-->
+  <app-pagination
+    [data]="pagination"
+    (changed)="onPaginationChanged($event)"
+  ></app-pagination>
+
+  <div class="base-list" *ngIf="!loading">
+    <app-base-list-item
+      *ngFor="let item of data"
+      [value]="item"
+    ></app-base-list-item>
+  </div>
 </div>

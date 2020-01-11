@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { QuestionsComponent } from './questions.component';
 
-const ROUTER_QUESTIONS = 'main';
+const ROUTER_QUESTIONS = 'questions';
 const mainRoutes: Routes = [
   { path: ROUTER_QUESTIONS, component: QuestionsComponent },
   { path: '', redirectTo: ROUTER_QUESTIONS, pathMatch: 'full' },

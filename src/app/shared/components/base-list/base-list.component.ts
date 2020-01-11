@@ -8,10 +8,15 @@ import { Question } from '../../types/question';
 })
 export class BaseListComponent implements OnInit {
   @Input() data: Question[];
+  @Input() loading: boolean;
+  @Input() pagination: any;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  public onPaginationChanged(data: {}): void {
+    console.log(data);
+  }
 }
