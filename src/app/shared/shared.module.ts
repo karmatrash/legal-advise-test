@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { MaterialModule } from '../material/material.module';
 import { BaseListComponent } from './components/base-list/base-list.component';
 import { BaseListItemComponent } from './components/base-list-item/base-list-item.component';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     CommonModule,
+    MaterialModule,
   ],
   declarations: [
     BaseListComponent,
