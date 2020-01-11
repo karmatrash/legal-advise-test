@@ -1,1 +1,7 @@
-<mat-card class="base-list-item">{{ value?.id }}</mat-card>
+<mat-card class="base-list-item">
+  <mat-card-header>
+    <mat-card-title>{{ value?.title }}</mat-card-title>
+    <mat-card-subtitle class="two-row-text">Last answer on: {{ value.date.created * 1000 | date }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="two-row-text">{{ value?.description?.question }}</mat-card-content>
+</mat-card>
