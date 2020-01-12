@@ -5,6 +5,7 @@ import { MaterialModule } from '../material/material.module';
 import { BaseListComponent } from './components/base-list/base-list.component';
 import { BaseListItemComponent } from './components/base-list-item/base-list-item.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ApiRestService } from '@app-shared/api.service';
 
 @NgModule({
   imports: [
@@ -20,6 +21,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     BaseListComponent,
     BaseListItemComponent,
   ],
-  providers: []
+  providers: [
+    ApiRestService,
+  ]
 })
 export class SharedModule {}
