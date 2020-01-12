@@ -16,7 +16,8 @@ export class PaginationComponent {
     this.changed.emit(paginationEvent);
   }
 
-  // private parsePagination(value: PageEvent): any {
-  //
+  // private parsePagination(value: PageEvent): PageEvent {
+  //   debugger;
+  //   return value;
   // }
 }

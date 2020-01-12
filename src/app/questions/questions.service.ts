@@ -1,40 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Question } from '@app-shared/types/question';
-import { Pagination } from '@app-shared/types/pagination';
-
-const baseURL = 'https://stage.legaladviceme.com/api';
-
-const DEFAULT_PARAMS = {
-  perPage: 10,
-  page: 25,
-};
+import { QuestionsResponse } from '@app-shared/types/questions.response';
+import { ApiRestService } from '@app-shared/api.service';
+import { QuestionsStore } from './questions.store';
+import { switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class QuestionsService {
-  public data: any[];
-  public loading = false;
-  public pagination: Pagination;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private store: QuestionsStore,
+    private api: ApiRestService,
+  ) {
+    this.initQuestionsObservable();
+  }
 
-  public getQuestions(params = DEFAULT_PARAMS) {
-    this.loading = true;
+  questionsRequest = new Subject();
 
-    this.http.get(`${baseURL}/search?entities=questions&perPage=${params.perPage}&page=${params.page}`)
-      .subscribe((response: { data: getQuestionsResponseData }) => {
-        this.data = response.data.list;
-        this.loading = false;
-        this.pagination = { total: response.data.total, ...response.data.pagination };
+  private initQuestionsObservable(): void {
+    this.questionsRequest.pipe(switchMap(() => {
+      return this.api.get('search?entities=questions', );
+    }))
+      .subscribe((response: { data: QuestionsResponse }) => {
+        this.store.setData(response.data);
+        this.store.setQuestionsLoading(false);
+      }, () => {
+        this.store.setData({});
+        this.store.setQuestionsLoading(false);
       });
   }
-}
 
-type getQuestionsResponseData = {
-  total: number;
-  list: Question[];
-  pagination: {
-    page, pages, items, limit: number;
-  };
-};
+  // private createParams() {
+  //
+  // }
+
+  public getQuestions(): void {
+    this.store.setQuestionsLoading(true);
+    this.questionsRequest.next();
+  }
+}

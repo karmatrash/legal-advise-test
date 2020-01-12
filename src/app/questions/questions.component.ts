@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { QuestionsService } from './questions.service';
+import { QuestionsStore } from './questions.store';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,10 @@ import { QuestionsService } from './questions.service';
 })
 export class QuestionsComponent implements OnInit {
 
-  constructor(public service: QuestionsService) { }
+  constructor(
+    private service: QuestionsService,
+    public store: QuestionsStore,
+  ) { }
 
   ngOnInit() {
     this.service.getQuestions();

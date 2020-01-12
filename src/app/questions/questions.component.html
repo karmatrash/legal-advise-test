@@ -1,7 +1,6 @@
 <main>
   <app-base-list
-    [data]="service.data"
-    [loading]="service.loading"
-    [pagination]="service.pagination"
+    [data]="store.questions | async"
+    [loading]="store.questionsLoading | async"
   ></app-base-list>
 </main>
