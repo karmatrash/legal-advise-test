@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { Question } from '../../types/question';
+import { Pagination } from '@app-shared/types/pagination';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-base-list',
@@ -9,14 +10,13 @@ import { Question } from '../../types/question';
 export class BaseListComponent implements OnInit {
   @Input() data: Question[];
   @Input() loading: boolean;
-  @Input() pagination: any;
-
-  constructor() { }
+  @Input() pagination: Pagination;
+  @Output() paginationChanged: EventEmitter<Pagination> = new EventEmitter<Pagination>();
 
   ngOnInit() {
   }
 
-  public onPaginationChanged(data: {}): void {
-    console.log(data);
+  public onPaginationChanged(data: any): void {
+    this.paginationChanged.emit(data);
   }
 }

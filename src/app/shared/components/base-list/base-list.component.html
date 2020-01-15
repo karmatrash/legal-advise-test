@@ -4,8 +4,8 @@
   </div>
 
   <!--  filters-->
-  <!--  pagination-->
   <app-pagination
+    *ngIf="pagination"
     [data]="pagination"
     (changed)="onPaginationChanged($event)"
   ></app-pagination>

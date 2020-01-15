@@ -1,8 +1,9 @@
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { DataService } from '@app-shared/data.service';
 import { DataStore } from '@app-shared/data.store';
+import { DataService } from '@app-shared/data.service';
+import { Pagination } from '@app-shared/types/pagination';
 
 @Component({
   selector: 'app-main',
@@ -31,20 +32,19 @@ export class QuestionsComponent implements OnInit {
         this.navigateToDefault();
       }
     });
+  }
 
-    setTimeout(() => {
-      this.router.navigate(['/questions'], { queryParams: {
-          perPage: 10,
-          page: 5,
-        } });
-    }, 4000);
+  public onPaginationChanged(value: Pagination): void {
+    this.updateList(value);
+  }
 
-    setTimeout(() => {
-      this.router.navigate(['/questions'], { queryParams: {
-          perPage: 10,
-          page: 10,
-        } });
-    }, 6000);
+  private updateList(value: Params): void {
+    const result = {
+      perPage: value.limit,
+      page: value.page,
+    };
+
+    this.router.navigate(['/questions'], { queryParams: result });
   }
 
   /**

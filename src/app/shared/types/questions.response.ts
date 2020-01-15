@@ -6,4 +6,5 @@ export type QuestionsResponse = {
   pagination: {
     page, pages, items, limit: number;
   };
+  filters: any;
 };

@@ -2,5 +2,7 @@
   <app-base-list
     [data]="store.questions | async"
     [loading]="store.questionsLoading | async"
+    [pagination]="store.pagination"
+    (paginationChanged)="onPaginationChanged($event)"
   ></app-base-list>
 </main>
