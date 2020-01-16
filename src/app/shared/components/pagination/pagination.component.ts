@@ -1,5 +1,6 @@
 import { Pagination } from '@app-shared/types/pagination';
 import { MatPaginator, PageEvent } from '@angular/material';
+import { DEFAULT_PER_PAGE_OPTIONS } from '../../../questions/questions.component';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
@@ -11,6 +12,7 @@ export class PaginationComponent implements OnChanges {
   @Input() data: Pagination;
   @Output() changed: EventEmitter<{}> = new EventEmitter<{}>();
   @ViewChild('matPaginator', { static: false }) matPaginator: MatPaginator;
+  public pageSizeOptions = DEFAULT_PER_PAGE_OPTIONS;
 
   public onPaginationChange(paginationEvent: PageEvent): void {
     this.changed.emit(this.parsePagination(paginationEvent));
@@ -20,9 +22,6 @@ export class PaginationComponent implements OnChanges {
     this.setProperPage();
   }
 
-  /**
-   * First loading logic while viewChild not yet rendered
-   */
   private setProperPage(): void {
     setTimeout(() => {
       this.matPaginator.pageIndex = this.data.page - 1;

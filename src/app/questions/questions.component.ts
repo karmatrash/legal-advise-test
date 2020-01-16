@@ -5,17 +5,26 @@ import { DataStore } from '@app-shared/data.store';
 import { DataService } from '@app-shared/data.service';
 import { Pagination } from '@app-shared/types/pagination';
 
+export const DEFAULT_PER_PAGE_OPTIONS = [5, 10, 25, 100];
+export const SORT_BY_FILTER = [
+  { value: 'relevancy', title: 'Relevancy' },
+  { value: 'date:desc', title: 'Date (newest first)' },
+  { value: 'date:asc', title: 'Date (oldest first)' },
+  { value: 'views:desc', title: 'Views (999 - 0)' },
+  { value: 'views:asc', title: 'Views (0 - 999)' },
+];
+export const DEFAULT_PARAMS = {
+  perPage: 10,
+  page: 1,
+  sortBy: 'relevancy'
+};
+
 @Component({
   selector: 'app-main',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
-  private defaultParams = {
-    perPage: 10,
-    page: 1,
-  };
-
   constructor(
     public store: DataStore,
     private router: Router,
@@ -35,27 +44,36 @@ export class QuestionsComponent implements OnInit {
   }
 
   public onPaginationChanged(value: Pagination): void {
-    this.updateList(value);
-  }
-
-  private updateList(value: Params): void {
     const result = {
       perPage: value.limit,
       page: value.page,
     };
 
-    this.router.navigate(['/questions'], { queryParams: result });
+    this.updateList(result);
   }
 
-  /**
-   * TODO: Truly validate params
-   * @params: Params
-   */
+  private updateList(paramsToBeUpdated: Params): void {
+    const params = this.service.getQueryParams();
+    const updatedParams = { ...params, ...paramsToBeUpdated };
+
+    this.router.navigate(['/questions'], { queryParams: updatedParams }).then();
+  }
+
   private isParamsValid(params: Params): boolean {
-    return !!params.page && !!params.page;
+    return this.paginationValid(params) && this.filtersValid(params);
   }
 
-  private navigateToDefault() {
-    this.router.navigate(['/questions'], { queryParams: this.defaultParams });
+  private paginationValid(params: Params): boolean {
+    return DEFAULT_PER_PAGE_OPTIONS.includes(+params.perPage) && !!params.page;
+  }
+
+  private filtersValid(params: Params): boolean {
+    const item = SORT_BY_FILTER.find(el => el.value === params.sortBy);
+
+    return !!item;
+  }
+
+  private navigateToDefault(): void {
+    this.router.navigate(['/questions'], { queryParams: DEFAULT_PARAMS }).then();
   }
 }

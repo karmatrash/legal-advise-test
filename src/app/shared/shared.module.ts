@@ -8,16 +8,20 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { ApiRestService } from '@app-shared/api.service';
 import { DataService } from '@app-shared/data.service';
 import { DataStore } from '@app-shared/data.store';
+import { BaseFilterComponent } from './components/base-filter/base-filter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
   ],
   declarations: [
     BaseListComponent,
     BaseListItemComponent,
     PaginationComponent,
+    BaseFilterComponent,
   ],
   exports: [
     BaseListComponent,

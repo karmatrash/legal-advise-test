@@ -2,6 +2,6 @@
   #matPaginator
   [length]="data.total"
   [pageSize]="data.limit"
-  [pageSizeOptions]="[5, 10, 25, 100]"
+  [pageSizeOptions]="pageSizeOptions"
   (page)="onPaginationChange($event)"
 ></mat-paginator>

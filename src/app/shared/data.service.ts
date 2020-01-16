@@ -31,6 +31,10 @@ export class DataService {
     this.queryParams = params;
   }
 
+  public getQueryParams(): Params {
+    return this.queryParams;
+  }
+
   private initRequestObservable(): void {
     this.dataRequest.pipe(switchMap(() => {
       return this.api.get('search?entities=questions', { params: this.createParams() });

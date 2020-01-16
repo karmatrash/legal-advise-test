@@ -6,3 +6,13 @@
 .base-list {
   padding-top: 10px;
 }
+
+.functional-panel {
+  padding: 10px 60px;
+  display: flex;
+  align-items: center;
+
+  app-base-filter {
+    padding-right: 20px;
+  }
+}
