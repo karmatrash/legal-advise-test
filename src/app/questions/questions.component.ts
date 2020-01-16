@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataStore } from '@app-shared/data.store';
 import { DataService } from '@app-shared/data.service';
 import { Pagination } from '@app-shared/types/pagination';
+import { Filter } from '@app-shared/types/filter';
 
 export const DEFAULT_PER_PAGE_OPTIONS = [5, 10, 25, 100];
 export const SORT_BY_FILTER = [
@@ -16,7 +17,7 @@ export const SORT_BY_FILTER = [
 export const DEFAULT_PARAMS = {
   perPage: 10,
   page: 1,
-  sortBy: 'relevancy'
+  sortBy: SORT_BY_FILTER[1].value,
 };
 
 @Component({
@@ -50,6 +51,10 @@ export class QuestionsComponent implements OnInit {
     };
 
     this.updateList(result);
+  }
+
+  public onFilterChanged(value: Filter): void {
+    this.updateList(value);
   }
 
   private updateList(paramsToBeUpdated: Params): void {

@@ -10,7 +10,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewC
 })
 export class PaginationComponent implements OnChanges {
   @Input() data: Pagination;
-  @Output() changed: EventEmitter<{}> = new EventEmitter<{}>();
+  @Output() changed: EventEmitter<Pagination> = new EventEmitter<Pagination>();
   @ViewChild('matPaginator', { static: false }) matPaginator: MatPaginator;
   public pageSizeOptions = DEFAULT_PER_PAGE_OPTIONS;
 

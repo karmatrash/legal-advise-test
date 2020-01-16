@@ -3,6 +3,8 @@
     [data]="store.questions | async"
     [loading]="store.questionsLoading | async"
     [pagination]="store.pagination"
+    [filters]="store.filters"
     (paginationChanged)="onPaginationChanged($event)"
+    (filterChanged)="onFilterChanged($event)"
   ></app-base-list>
 </main>

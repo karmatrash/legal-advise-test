@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { DataStore } from '@app-shared/data.store';
+import { DataService } from '@app-shared/data.service';
+import { ApiRestService } from '@app-shared/api.service';
 import { MaterialModule } from '../material/material.module';
 import { BaseListComponent } from './components/base-list/base-list.component';
-import { BaseListItemComponent } from './components/base-list-item/base-list-item.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { ApiRestService } from '@app-shared/api.service';
-import { DataService } from '@app-shared/data.service';
-import { DataStore } from '@app-shared/data.store';
 import { BaseFilterComponent } from './components/base-filter/base-filter.component';
-import { FormsModule } from '@angular/forms';
+import { BaseListItemComponent } from './components/base-list-item/base-list-item.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     BaseListComponent,

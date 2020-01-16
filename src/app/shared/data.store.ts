@@ -1,7 +1,9 @@
+import { Params } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Question } from '@app-shared/types/question';
 import { Pagination } from '@app-shared/types/pagination';
 import { QuestionsResponse } from '@app-shared/types/questions.response';
+import { Filter } from '@app-shared/types/filter';
 
 export class DataStore {
   private _questions: BehaviorSubject<Question[]> = new BehaviorSubject<Question[]>([]);
@@ -10,8 +12,17 @@ export class DataStore {
   private _questionsLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   questionsLoading = this._questionsLoading.asObservable();
 
-  pagination: Pagination;
-  filters: any;
+  private _queryParams: Params;
+  public pagination: Pagination;
+  public filters: Filter;
+
+  get queryParams(): Params {
+    return this._queryParams;
+  }
+
+  set queryParams(value: Params) {
+    this._queryParams = value;
+  }
 
   public setDataLoading(value: boolean): void {
     this._questionsLoading.next(value);
@@ -35,6 +46,10 @@ export class DataStore {
       limit: response.pagination.limit,
     };
 
-    this.filters = response.filters;
+    const filters = { ...this.queryParams };
+    delete filters.page;
+    delete filters.perPage;
+
+    this.filters = filters;
   }
 }

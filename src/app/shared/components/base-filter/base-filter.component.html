@@ -1,14 +1,18 @@
 <mat-card>
-  <mat-form-field>
-    <mat-label>Sort by:</mat-label>
-    <mat-select
-      disableRipple
-      [(ngModel)]="selectedSort"
-    >
-      <mat-option
-        *ngFor="let option of sortBy"
-        [value]="option"
-      >{{ option.title }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Sort by:</mat-label>
+      <mat-select
+        disableRipple
+        formControlName="sortBy"
+      >
+        <mat-option
+          *ngFor="let option of sortBy"
+          [value]="option.value"
+        >
+          {{ option.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </mat-card>

@@ -19,7 +19,6 @@ export class DataService {
     this.initRequestObservable();
   }
 
-  private queryParams: Params;
   private dataRequest = new Subject();
 
   public getData(): void {
@@ -28,11 +27,11 @@ export class DataService {
   }
 
   public updateQueryParams(params): void {
-    this.queryParams = params;
+    this.store.queryParams = params;
   }
 
   public getQueryParams(): Params {
-    return this.queryParams;
+    return this.store.queryParams;
   }
 
   private initRequestObservable(): void {
@@ -51,9 +50,9 @@ export class DataService {
   private createParams(): HttpParams {
     let params = new HttpParams();
 
-    Object.keys(this.queryParams)
+    Object.keys(this.store.queryParams)
       .forEach(param => {
-        params = params.append(param, this.queryParams[param]);
+        params = params.append(param, this.store.queryParams[param]);
       });
 
     return params;

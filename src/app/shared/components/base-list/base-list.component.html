@@ -4,8 +4,10 @@
   </div>
 
   <div class="functional-panel">
-    <app-base-filter>
-    </app-base-filter>
+    <app-base-filter
+      [filters]="filters"
+      (filterChanged)="onFilterChanged($event)"
+    ></app-base-filter>
 
     <app-pagination
       *ngIf="pagination"
