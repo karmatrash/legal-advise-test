@@ -2,11 +2,11 @@ import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { QuestionsResponse } from '@app-shared/types/questions.response';
-import { ApiRestService } from '@app-shared/api.service';
-import { DataStore } from '@app-shared/data.store';
-import { switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { DataStore } from '@app-shared/data.store';
+import { ApiRestService } from '@app-shared/api.service';
+import { QuestionsResponse } from '@app-shared/types/questions.response';
 
 @Injectable()
 export class DataService {

@@ -1,7 +1,8 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { Filter } from '@app-shared/types/filter';
 import { Question } from '@app-shared/types/question';
 import { Pagination } from '@app-shared/types/pagination';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-base-list',

@@ -1,8 +1,4 @@
 <div class="base-list-wrapper">
-  <div class="spinner-wrapper" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-  </div>
-
   <div class="functional-panel">
     <app-base-filter
       [filters]="filters"
@@ -16,6 +12,9 @@
     ></app-pagination>
   </div>
 
+  <div class="spinner-wrapper" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
   <div class="base-list" *ngIf="!loading">
     <app-base-list-item
       *ngFor="let item of data"

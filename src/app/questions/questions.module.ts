@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { QuestionsRoutingModule } from './questions.routing.module';
+import { CoreModule } from '../core/core.module';
 import { QuestionsComponent } from './questions.component';
 import { SharedModule } from '@app-shared/shared.module';
-import { CoreModule } from '../core/core.module';
+import { QuestionsRoutingModule } from './questions.routing.module';
 
 @NgModule({
   imports: [
@@ -16,4 +16,4 @@ import { CoreModule } from '../core/core.module';
   ],
   providers: []
 })
-export class QuestionsModule {}
+export class QuestionsModule { }

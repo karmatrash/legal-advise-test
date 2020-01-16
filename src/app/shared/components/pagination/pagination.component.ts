@@ -1,7 +1,8 @@
-import { Pagination } from '@app-shared/types/pagination';
 import { MatPaginator, PageEvent } from '@angular/material';
-import { DEFAULT_PER_PAGE_OPTIONS } from '../../../questions/questions.component';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+
+import { Pagination } from '@app-shared/types/pagination';
+import { DEFAULT_PER_PAGE_OPTIONS } from '../../../questions/questions.component';
 
 @Component({
   selector: 'app-pagination',

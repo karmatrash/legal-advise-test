@@ -1,9 +1,10 @@
 import { Params } from '@angular/router';
+
+import { Filter } from '@app-shared/types/filter';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Question } from '@app-shared/types/question';
 import { Pagination } from '@app-shared/types/pagination';
 import { QuestionsResponse } from '@app-shared/types/questions.response';
-import { Filter } from '@app-shared/types/filter';
 
 export class DataStore {
   private _questions: BehaviorSubject<Question[]> = new BehaviorSubject<Question[]>([]);

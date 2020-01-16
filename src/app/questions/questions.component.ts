@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
+import { Filter } from '@app-shared/types/filter';
 import { DataStore } from '@app-shared/data.store';
 import { DataService } from '@app-shared/data.service';
 import { Pagination } from '@app-shared/types/pagination';
-import { Filter } from '@app-shared/types/filter';
 
 export const DEFAULT_PER_PAGE_OPTIONS = [5, 10, 25, 100];
 export const SORT_BY_FILTER = [

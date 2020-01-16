@@ -1,8 +1,9 @@
 import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+
 import { Filter } from '@app-shared/types/filter';
 import { SORT_BY_FILTER } from '../../../questions/questions.component';
 import { BaseFilterForm } from '@app-shared/components/base-filter/base-filter.form';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-base-filter',
@@ -16,7 +17,7 @@ export class BaseFilterComponent implements OnInit, OnChanges {
   public sortBy = SORT_BY_FILTER;
   public form: FormGroup;
 
-  constructor(private filter: BaseFilterForm) {}
+  constructor(private filter: BaseFilterForm) { }
 
   ngOnInit(): void {
     this.form = this.filter.initializeForm();
@@ -29,7 +30,7 @@ export class BaseFilterComponent implements OnInit, OnChanges {
     }
   }
 
-  private onFilterChanged(value: any): void {
+  private onFilterChanged(value: Filter): void {
     this.filterChanged.emit(value);
   }
 }

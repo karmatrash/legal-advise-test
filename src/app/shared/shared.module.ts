@@ -34,4 +34,4 @@ import { BaseListItemComponent } from './components/base-list-item/base-list-ite
     DataStore,
   ]
 })
-export class SharedModule {}
+export class SharedModule { }
