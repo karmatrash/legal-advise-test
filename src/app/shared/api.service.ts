@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ApiRestService {
+
   constructor(private http: HttpClient) { }
 
   public get(url: string, options?: {

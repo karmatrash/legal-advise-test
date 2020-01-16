@@ -4,12 +4,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Entity } from '@app-shared/types/entity';
 import { DataStore } from '@app-shared/data.store';
 import { ApiRestService } from '@app-shared/api.service';
 import { QuestionsResponse } from '@app-shared/types/questions.response';
 
 @Injectable()
 export class DataService {
+  private _currentEntity: Entity;
+  private dataRequest = new Subject();
 
   constructor(
     private http: HttpClient,
@@ -19,7 +22,13 @@ export class DataService {
     this.initRequestObservable();
   }
 
-  private dataRequest = new Subject();
+  get entity(): Entity {
+    return this._currentEntity;
+  }
+
+  set entity(value: Entity) {
+    this._currentEntity = value;
+  }
 
   public getData(): void {
     this.store.setDataLoading(true);
@@ -36,7 +45,7 @@ export class DataService {
 
   private initRequestObservable(): void {
     this.dataRequest.pipe(switchMap(() => {
-      return this.api.get('search?entities=questions', { params: this.createParams() });
+      return this.api.get(`search?entities=${this.entity}`, { params: this.createParams() });
     }))
       .subscribe((response: { data: QuestionsResponse }) => {
         this.store.setData(response.data);

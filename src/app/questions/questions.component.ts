@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Filter } from '@app-shared/types/filter';
+import { Entity } from '@app-shared/types/entity';
 import { DataStore } from '@app-shared/data.store';
 import { DataService } from '@app-shared/data.service';
 import { Pagination } from '@app-shared/types/pagination';
@@ -26,12 +27,19 @@ export const DEFAULT_PARAMS = {
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
+  private entity = Entity.questions;
+
   constructor(
     public store: DataStore,
     private router: Router,
     private route: ActivatedRoute,
     private service: DataService,
-  ) { }
+  ) {
+    service.entity = this.entity;
+  }
+  /**
+   * TODO: remove all handling logic into parent container base class, so another entity component can just extend code bellow:
+   */
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
@@ -61,7 +69,7 @@ export class QuestionsComponent implements OnInit {
     const params = this.service.getQueryParams();
     const updatedParams = { ...params, ...paramsToBeUpdated };
 
-    this.router.navigate(['/questions'], { queryParams: updatedParams }).then();
+    this.router.navigate([`/${this.entity}`], { queryParams: updatedParams }).then();
   }
 
   private isParamsValid(params: Params): boolean {
@@ -79,6 +87,6 @@ export class QuestionsComponent implements OnInit {
   }
 
   private navigateToDefault(): void {
-    this.router.navigate(['/questions'], { queryParams: DEFAULT_PARAMS }).then();
+    this.router.navigate([`/${this.entity}`], { queryParams: DEFAULT_PARAMS }).then();
   }
 }
